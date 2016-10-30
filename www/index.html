@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--HTML5 doctype-->
+<html>
+
+<head>
+    <title>Sudoku Solver</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link type="text/css" rel="stylesheet" href="lib/appframework/icons.css" />
+    <link type="text/css" rel="stylesheet" href="lib/appframework/af.ui.css" />
+	<link type="text/css" rel="stylesheet" href="css/sudoku.css">
+	
+    <script type="text/javascript" type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/fastclick.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/appframework/appframework.ui.min.js"></script>
+		
+    <script type="text/javascript" charset="utf-8" src="sudoku.js"></script>
+    <script type="text/javascript" charset="utf-8" src="sudoku-ui.js"></script>   
+</head>
+
+<body>
+
+    <div id="splashscreen" class='ui-loader heavy'>
+        App Framework Starting
+        <br>
+        <br>
+        <span class='ui-icon ui-icon-loading spin'></span>
+        <h1>Starting app</h1>
+    </div>
+
+	<div class="view">
+        <div class="pages">
+            <div class="panel" data-title="Home" id="item1">
+				<div class="container-full">
+					 <header>
+						<h1>The Fastest Sudoku Solver Ever</h1>
+					</header>
+
+					<div class="sudoku-wrapper">
+						<div class="sudoku-container">
+							<table>
+								<tbody>
+								<tr>
+									<td class="sudoku-key" >1</td>							
+									<td class="r0 column0 z0 bt bl editable" data-val="" data-cellnum="0"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r0 column1 z0 bt editable" data-val="" data-cellnum="1"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r0 column2 z0 bt br editable" data-val="" data-cellnum="2"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r0 column3 z1 bt bl editable" data-val="" data-cellnum="3"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r0 column4 z1 bt editable" data-val="" data-cellnum="4"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r0 column5 z1 bt br editable" data-val="" data-cellnum="5"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r0 column6 z2 bt bl editable" data-val="" data-cellnum="6"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r0 column7 z2 bt editable" data-val="" data-cellnum="7"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r0 column8 z2 bt br editable" data-val="" data-cellnum="8"><input type="text" maxlength="1" value="" readonly="true" ></td>
+								</tr>
+								<tr>
+								<td class="sudoku-key" >2</td>							
+									<td class="r1 column0 z0 bl editable" data-val="" data-cellnum="9"><input type="text" maxlength="1" value="" readonly="true"></td>
+									<td class="r1 column1 z0 editable" data-val="" data-cellnum="10"><input type="text" maxlength="1" value="" readonly="true"></td>
+									<td class="r1 column2 z0 br editable" data-val="" data-cellnum="11"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r1 column3 z1 bl editable" data-val="" data-cellnum="12"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r1 column4 z1 editable" data-val="" data-cellnum="13"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r1 column5 z1 br editable" data-val="" data-cellnum="14"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r1 column6 z2 bl editable" data-val="" data-cellnum="15"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r1 column7 z2 editable" data-val="" data-cellnum="16"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r1 column8 z2 br editable" data-val="" data-cellnum="17"><input type="text" maxlength="1" value="" readonly="true" ></td>
+								</tr>
+								<tr>
+									<td class="sudoku-key" >3</td>							
+									<td class="r2 column0 z0 bb bl editable" data-val="" data-cellnum="18"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r2 column1 z0 bb editable" data-val="" data-cellnum="19"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r2 column2 z0 br bb editable" data-val="" data-cellnum="20"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r2 column3 z1 bb bl editable" data-val="" data-cellnum="21"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r2 column4 z1 bb editable" data-val="" data-cellnum="22"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r2 column5 z1 br bb editable" data-val="" data-cellnum="23"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r2 column6 z2 bb bl editable" data-val="" data-cellnum="24"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r2 column7 z2 bb editable" data-val="" data-cellnum="25"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r2 column8 z2 br bb editable" data-val="" data-cellnum="26"><input type="text" maxlength="1" value="" readonly="true" ></td>
+								</tr>
+								<tr>
+									<td class="sudoku-key" >4</td>							
+									<td class="r3 column0 z3 bt bl editable" data-val="" data-cellnum="27"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r3 column1 z3 bt editable" data-val="" data-cellnum="28"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r3 column2 z3 bt br editable" data-val="" data-cellnum="29"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r3 column3 z4 bt bl editable" data-val="" data-cellnum="30"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r3 column4 z4 bt editable" data-val="" data-cellnum="31"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r3 column5 z4 bt br editable" data-val="" data-cellnum="32"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r3 column6 z5 bt bl editable" data-val="" data-cellnum="33"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r3 column7 z5 bt editable" data-val="" data-cellnum="34"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r3 column8 z5 bt br editable" data-val="" data-cellnum="35"><input type="text" maxlength="1" value="" readonly="true" ></td>
+								</tr>
+								<tr>
+									<td class="sudoku-key" >5</td>							
+									<td class="r4 column0 z3 bl editable" data-val="" data-cellnum="36"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r4 column1 z3 editable" data-val="" data-cellnum="37"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r4 column2 z3 br editable" data-val="" data-cellnum="38"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r4 column3 z4 bl editable" data-val="" data-cellnum="39"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r4 column4 z4 editable" data-val="" data-cellnum="40"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r4 column5 z4 br editable" data-val="" data-cellnum="41"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r4 column6 z5 bl editable" data-val="" data-cellnum="42"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r4 column7 z5 editable" data-val="" data-cellnum="43"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r4 column8 z5 br editable" data-val="" data-cellnum="44"><input type="text" maxlength="1" value="" readonly="true" ></td>
+								</tr>
+								<tr>				
+									<td class="sudoku-key" >6</td>							
+									<td class="r5 column0 z3 bb bl editable" data-val="" data-cellnum="45"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r5 column1 z3 bb editable" data-val="" data-cellnum="46"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r5 column2 z3 br bb editable" data-val="" data-cellnum="47"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r5 column3 z4 bb bl editable" data-val="" data-cellnum="48"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r5 column4 z4 bb editable" data-val="" data-cellnum="49"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r5 column5 z4 br bb editable" data-val="" data-cellnum="50"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r5 column6 z5 bb bl editable" data-val="" data-cellnum="51"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r5 column7 z5 bb editable" data-val="" data-cellnum="52"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r5 column8 z5 br bb editable" data-val="" data-cellnum="53"><input type="text" maxlength="1" value="" readonly="true" ></td>
+								</tr>		
+								<tr>				
+									<td class="sudoku-key" >7</td>							
+									<td class="r6 column0 z6 bt bl editable" data-val="" data-cellnum="54"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r6 column1 z6 bt editable" data-val="" data-cellnum="55"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r6 column2 z6 bt br editable" data-val="" data-cellnum="56"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r6 column3 z7 bt bl editable" data-val="" data-cellnum="57"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r6 column4 z7 bt editable" data-val="" data-cellnum="58"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r6 column5 z7 bt br editable" data-val="" data-cellnum="59"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r6 column6 z8 bt bl editable" data-val="" data-cellnum="60"><input type="text" maxlength="1" value="" readonly="true"></td>
+									<td class="r6 column7 z8 bt editable" data-val="" data-cellnum="61"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r6 column8 z8 bt br editable" data-val="" data-cellnum="62"><input type="text" maxlength="1" value="" readonly="true" ></td>
+								</tr>			
+								<tr><td class="sudoku-key" >8</td>							
+									<td class="r7 column0 z6 bl editable" data-val="" data-cellnum="63"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r7 column1 z6 editable" data-val="" data-cellnum="64"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r7 column2 z6 br editable" data-val="" data-cellnum="65"><input type="text" maxlength="1" value="" readonly="true"></td>
+									<td class="r7 column3 z7 bl editable" data-val="" data-cellnum="66"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r7 column4 z7 editable" data-val="" data-cellnum="67"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r7 column5 z7 br editable" data-val="" data-cellnum="68"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r7 column6 z8 bl editable" data-val="" data-cellnum="69"><input type="text" maxlength="1" value="" readonly="true"></td>
+									<td class="r7 column7 z8 editable" data-val="" data-cellnum="70"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r7 column8 z8 br editable" data-val="" data-cellnum="71"><input type="text" maxlength="1" value="" readonly="true"></td>
+								</tr>
+								<tr><td class="sudoku-key" >9</td>							
+									<td class="r8 column0 z6 bb bl editable" data-val="" data-cellnum="72"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r8 column1 z6 bb editable" data-val="" data-cellnum="73"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r8 column2 z6 br bb editable" data-val="" data-cellnum="74"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r8 column3 z7 bb bl editable" data-val="" data-cellnum="75"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r8 column4 z7 bb editable" data-val="" data-cellnum="76"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r8 column5 z7 br bb editable" data-val="" data-cellnum="77"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r8 column6 z8 bb bl editable" data-val="" data-cellnum="78"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r8 column7 z8 bb editable" data-val="" data-cellnum="79"><input type="text" maxlength="1" value="" readonly="true" ></td>
+									<td class="r8 column8 z8 br bb editable" data-val="" data-cellnum="80"><input type="text" maxlength="1" value="" readonly="true" ></td>
+								</tr>
+								<tr>
+									<td class="sudoku-key" >X</td>
+									<td class="sudoku-options" colspan="9">
+										<button type="button" class="sudoku-clear">Clear</button>
+										<button type="button" class="sudoku-load">Load</button>
+										<button type="button" class="sudoku-solve">Solve</button>
+									</td>
+								</tr>
+							</tbody>
+							</table>
+							<div class='error-message' style='color:red;margin-bottom: 20px;'>Value already exists in a row, column or square.</div>	
+						</div> 
+					</div>
+					<div class="loader"></div>
+				</div>
+            </div>
+        </div>    
+    </div>	
+</body>
+</html>
