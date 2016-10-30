@@ -24,12 +24,12 @@ How to install Sudoku Solver on an iPad or iPhone
 Given the Intel XDK approach, to publish as an app on the iPad I would need to become an Apple Developer which costs $119 dollars. So instead please using the
 Intel App Preview app to test:
 
-1) On your iPad or iPhone find the "Intel Preview App" in the Apple App store and install (its a free app)
-2) Launch the app and login as me (username: fowlerp, password: qlik1234!)
-3) Choose the Sudoku app (only app in the app list). The Preview app is actually downloading the Sudoku Solver code from an Intel server so you need to have a network path to the Internet.
-4) Run it 
-5) Enjoy. You can enter digits in cells using the vertical digit strip on the left hand side or you can load one of 95 hard puzzles (from Peter Norvig's site)
-6) To exit the preview use a three finger tap
+- On your iPad or iPhone find the "Intel Preview App" in the Apple App store and install (its a free app)
+- Launch the app and login as me (username: fowlerp, password: qlik1234!)
+- Choose the Sudoku app (only app in the app list). The Preview app is actually downloading the Sudoku Solver code from an Intel server so you need to have a network path to the Internet.
+- Run it 
+- Enjoy. You can enter digits in cells use the vertical digit strip on the left hand side or you can load one of 95 hard puzzles (from Peter Norvig's site)
+- To exit the preview use a three finger tap
 
 How to install Sudoku Solver on an Android device
 -------------------------------------------------
@@ -41,7 +41,7 @@ Design
 
 sudoku.js is the solver itself. This code has nothing to do with UI. It defines a Puzzle class that contains methods you might expect: 
 
-- constructor: takes an 81 character string in the form the Norvig users (digits 1 through 9. "." represents a blank cell). Internally this constructor is also used to clone puzzle objects
+- constructor: takes an 81 character string in the form that Norvig users (digits 1 through 9. "." represents a blank cell). Internally this constructor is also used to clone puzzle objects
 - solve: solve the puzzle. Can even try to solve a solved puzzle which of course is trivially done
 - solved: returns true if the puzzle is solved (each cell contains a digit)
 - toString: returns a string representation of the puzzle (Norvig's string form)
@@ -62,7 +62,7 @@ Screen resolution differences are handled via CSS using the @media construct.
 Bugs and Deficiencies
 ---------------------
 
-At time of writing the busy indicator (spinner) presented while the app is solving a program does not actually spin with in the Intel App Preview. If I have
+At time of writing the busy indicator (spinner) presented while the app is solving a program does not actually spin within the Intel App Preview. If I have
 time I will dig into that. 
 
 CSS Styling could be improved. In particular, the buttons are rather generic, bland and small. Will improve if I have time.
