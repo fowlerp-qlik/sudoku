@@ -57,18 +57,17 @@ suodu-ui.js handles all of the UI (using jQuery) and uses sudoku.js to solve the
 Device Resolution
 -----------------
 
-Screen resolution differences are handled via CSS using the @media construct.
+Screen resolution differences are handled via CSS using the @media construct. See sudoku.css.
 
 Bugs and Deficiencies
 ---------------------
 
-At time of writing the busy indicator (spinner) presented while the app is solving a program does not actually spin within the Intel App Preview. If I have
-time I will dig into that. 
+At time of writing the busy indicator (spinner) presented while the app is solving a program does not actually spin within the Intel App Preview.
+Does spin within Chrome on Windows 10.
 
 CSS Styling could be improved. In particular, the buttons are rather generic, bland and small. Will improve if I have time.
 
-Resolution handling on various devices and modes (landscape vs portrait) is still incomplete/incorrect. Ideally in landscape modes
-the spinner would be presented on the right.
+Resolution handling on various devices and modes (landscape vs portrait) is incomplete/incorrect on the iphone 5.
 
 App Framework (formerly jQ.Mobi)
 -----------------------------------------------------------------------------

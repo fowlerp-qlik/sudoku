@@ -39,7 +39,7 @@ function initPuzzle() {
 	var puzzleIndex 		= 0;
 	
 	$(".error-message", sudokuContainer).hide();
-	$(".loader").hide();
+	$(".spinner").hide();
 	
 	cells.on('tap', function(event){
 		event.preventDefault();
@@ -131,16 +131,15 @@ function initPuzzle() {
 			}
 		});	
 		
-	    $(".loader").show();
+	    $(".spinner").show();
+		
 		setTimeout(function(){ 
 		    var puzzle = new Puzzle(puzzleStr);
 		    var solvedPuzzle = puzzle.solve();
 			
 			puzzleStr = solvedPuzzle.toString();
-			solvedPuzzle.check();
-			console.log(solvedPuzzle.getTimeToSolve());
 			loadPuzzle(cells, puzzleStr);
-			$(".loader").hide();
+			$(".spinner").hide();
 		}, 10);
 	});
 }
