@@ -1,147 +1,147 @@
 function clearPuzzle(sudokuContainer) {
-	var cells = sudokuContainer.find('table td.editable'); 
-	$(".error-message", sudokuContainer).hide();
+    var cells = sudokuContainer.find('table td.editable'); 
+    $(".error-message", sudokuContainer).hide();
 	
-	cells.find('input').removeClass('current').removeClass('filled-in');
-	cells.find('input').val("");
+    cells.find('input').removeClass('current').removeClass('filled-in');
+    cells.find('input').val("");
 }
 
 function loadPuzzle(cells, puzzleStr) {	
-	var cellNumStr;
-	var cellNum;
-	var isComplete = puzzleStr.indexOf(".") < 0;	
+    var cellNumStr;
+    var cellNum;
+    var isComplete = puzzleStr.indexOf(".") < 0;	
 		
-	cells.each(function() {
-		var cell = $(this);
-		cellNumStr = cell.data('cellnum');
-		cellNum = parseInt(cellNumStr);
+    cells.each(function() {
+        var cell = $(this);
+        cellNumStr = cell.data('cellnum');
+        cellNum = parseInt(cellNumStr);
 		
-		if(puzzleStr[cellNum] !== '.') {
-			if(isComplete) {
-				cell.find('input').val(puzzleStr[cellNum]);
-			} else {
-				cell.find('input').val(puzzleStr[cellNum]).addClass('filled-in');
-			}
-		}
-	});	
+        if(puzzleStr[cellNum] !== '.') {
+            if(isComplete) {
+                cell.find('input').val(puzzleStr[cellNum]);
+            } else {
+                cell.find('input').val(puzzleStr[cellNum]).addClass('filled-in');
+            }
+        }
+    });	
 }
 
 // class cell class "origValue" means the user provided input for the cell or the cell value came from an imported puzzle
 // values for cells without the origValue class resulted from solving the puzzle. What to show differnet styling for the
 // origValue cells
 function initPuzzle() {
-	var sudokuContainer 	= $(this).find('.sudoku-container');
-	var cells 		        = sudokuContainer.find('table td.editable'); 
-	var keyboardKeys		= sudokuContainer.find('td.sudoku-key');
-	var clear               = sudokuContainer.find('.sudoku-clear');
-	var load                = sudokuContainer.find('.sudoku-load');
-	var solve               = sudokuContainer.find('.sudoku-solve');
-	var puzzleIndex 		= 0;
+    var sudokuContainer 	= $(this).find('.sudoku-container');
+    var cells 		        = sudokuContainer.find('table td.editable'); 
+    var keyboardKeys		= sudokuContainer.find('td.sudoku-key');
+    var clear               = sudokuContainer.find('.sudoku-clear');
+    var load                = sudokuContainer.find('.sudoku-load');
+    var solve               = sudokuContainer.find('.sudoku-solve');
+    var puzzleIndex 		= 0;
 	
-	$(".error-message", sudokuContainer).hide();
-	$(".spinner").hide();
+    $(".error-message", sudokuContainer).hide();
+    $(".spinner").hide();
 	
-	cells.on('tap', function(event){
-		event.preventDefault();
-		$(".error-message", sudokuContainer).hide();
-		cells.find('input').removeClass('current');
-		input = $(this).find('input');
-		input.addClass('current');
-	});
+    cells.on('tap', function(event){
+        event.preventDefault();
+        $(".error-message", sudokuContainer).hide();
+        cells.find('input').removeClass('current');
+        input = $(this).find('input');
+        input.addClass('current');
+    });
 	
-	keyboardKeys.on('tap', function(event){
-		event.preventDefault();
-		$(".error-message", sudokuContainer).hide();
-		var validInput = true;
-		var current	= cells.find('input.current');
-		var value = $(this).html();
-		if (value == "X") value = "";
+    keyboardKeys.on('tap', function(event){
+        event.preventDefault();
+        $(".error-message", sudokuContainer).hide();
+        var validInput = true;
+        var current	= cells.find('input.current');
+        var value = $(this).html();
+        if (value == "X") value = "";
 		
-		if(value !== "") {                                         // check for valid input
-			var cellNumStr = current.parent().data("cellnum");
-		    cellNum = parseInt(cellNumStr);
-			var xCoord = Math.floor(cellNum/9);
-			var yCoord = cellNum%9;
+        if(value !== "") {                                         // check for valid input
+            var cellNumStr = current.parent().data("cellnum");
+            cellNum = parseInt(cellNumStr);
+            var xCoord = Math.floor(cellNum/9);
+            var yCoord = cellNum%9;
 			
-			// check row for a duplicate
-			sudokuContainer.find((".r" + xCoord)).each(function() {
-				if(value === $(this).find('input').val()) {
-					validInput = false;
-				}
-			});
+            // check row for a duplicate
+            sudokuContainer.find((".r" + xCoord)).each(function() {
+                if(value === $(this).find('input').val()) {
+                    validInput = false;
+                }
+            });
 			
-			// check column for a duplicate
-			sudokuContainer.find((".column" + yCoord)).each(function() {
-				if(value === $(this).find('input').val()) {
-					validInput = false;
-				}
-			});
+            // check column for a duplicate
+            sudokuContainer.find((".column" + yCoord)).each(function() {
+                if(value === $(this).find('input').val()) {
+                    validInput = false;
+                }
+            });
 			
-			// check for duplicate within square of 9 cells (zone)
-			var zone = 3*Math.floor(xCoord/3) + Math.floor(yCoord/3); 
-			sudokuContainer.find((".z" + zone)).each(function() {
-				if(value === $(this).find('input').val()) {
-					validInput = false;
-				}
-			});
+            // check for duplicate within square of 9 cells (zone)
+            var zone = 3*Math.floor(xCoord/3) + Math.floor(yCoord/3); 
+            sudokuContainer.find((".z" + zone)).each(function() {
+                if(value === $(this).find('input').val()) {
+                    validInput = false;
+                }
+            });
  			
-		} else {
-			current.removeClass('filled-in');
-		}	
+        } else {
+            current.removeClass('filled-in');
+        }	
 	
-		if(validInput) {
-			current.val(value);
-			if(value !== "") {
-				current.addClass('filled-in');
-			}
-		} else {
-			$(".error-message", sudokuContainer).show();
-		}
-	});	   
+        if(validInput) {
+            current.val(value);
+            if(value !== "") {
+                current.addClass('filled-in');
+            }
+        } else {
+            $(".error-message", sudokuContainer).show();
+        }
+    });	   
 	
-	clear.on('tap', function(event){
-		event.preventDefault();
-		clearPuzzle(sudokuContainer);
-	});
+    clear.on('tap', function(event){
+        event.preventDefault();
+        clearPuzzle(sudokuContainer);
+    });
 
-	load.on('tap', function(event){		
-	    event.preventDefault();
-		clearPuzzle(sudokuContainer);
-		loadPuzzle(cells, hardPuzzles[puzzleIndex]);
-		puzzleIndex = (puzzleIndex+1) % hardPuzzles.length;
-	});
+    load.on('tap', function(event){		
+        event.preventDefault();
+        clearPuzzle(sudokuContainer);
+        loadPuzzle(cells, hardPuzzles[puzzleIndex]);
+        puzzleIndex = (puzzleIndex+1) % hardPuzzles.length;
+    });
 	
-	solve.on('tap', function(event){
-		var cellNumStr;
-		var cellNum;
-		var value;
-		var puzzleStr = ".................................................................................";
+    solve.on('tap', function(event){
+        var cellNumStr;
+        var cellNum;
+        var value;
+        var puzzleStr = ".................................................................................";
 		
-		event.preventDefault();
-		$(".error-message", sudokuContainer).hide();
-		cells.find('input').removeClass('current');
+        event.preventDefault();
+        $(".error-message", sudokuContainer).hide();
+        cells.find('input').removeClass('current');
 		
-		cells.each(function() {
-			var cell = $(this);
-			cellNumStr = cell.data('cellnum');
-		    cellNum = parseInt(cellNumStr);
-			value = cell.find('input').val();
-			if(value !== '') {	
-				puzzleStr = puzzleStr.substring(0, cellNum) + value + puzzleStr.substring(cellNum+1);
-			}
-		});	
+        cells.each(function() {
+            var cell = $(this);
+            cellNumStr = cell.data('cellnum');
+            cellNum = parseInt(cellNumStr);
+            value = cell.find('input').val();
+            if(value !== '') {	
+                puzzleStr = puzzleStr.substring(0, cellNum) + value + puzzleStr.substring(cellNum+1);
+            }
+        });	
 		
-	    $(".spinner").show();
+        $(".spinner").show();
 		
-		setTimeout(function(){ 
-		    var puzzle = new Puzzle(puzzleStr);
-		    var solvedPuzzle = puzzle.solve();
+        setTimeout(function(){ 
+            var puzzle = new Puzzle(puzzleStr);
+            var solvedPuzzle = puzzle.solve();
 			
-			puzzleStr = solvedPuzzle.toString();
-			loadPuzzle(cells, puzzleStr);
-			$(".spinner").hide();
-		}, 10);
-	});
+            puzzleStr = solvedPuzzle.toString();
+            loadPuzzle(cells, puzzleStr);
+            $(".spinner").hide();
+        }, 0);
+    });
 }
 
 $().ready(initPuzzle);

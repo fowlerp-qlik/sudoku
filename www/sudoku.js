@@ -10,25 +10,25 @@
 */
 
 function Puzzle(arg) {		
-	// create empty easyCells set. easyCells are those that have exactly one possible value .. hence easyCells
-	// are very easy to fill in! Great to have some easy cells to make easy progress with
-	this.easyCells = new Array();
-	this.timeToSolve  = null;
+    // create empty easyCells set. easyCells are those that have exactly one possible value .. hence easyCells
+    // are very easy to fill in! Great to have some easy cells to make easy progress with
+    this.easyCells = new Array();
+    this.timeToSolve  = null;
 	
-	// input could be a 81 character string consisting of digits 1..9 and period. Period means cell is not filled in 
+    // input could be a 81 character string consisting of digits 1..9 and period. Period means cell is not filled in 
     if (typeof arg === 'string') {	        
-	    this.numDefinedCells = 0;
-		var d = new Date();
-		this.timeStarted = d.getTime();
+        this.numDefinedCells = 0;
+        var d = new Date();
+        this.timeStarted = d.getTime();
  	
-		// create empty puzzle (2d array) with each cell having 1..9 possibilities, all cells are "undefined"
-		this.cells = new Array(9);
-		for (var i = 0; i < 9; i++) {
-			this.cells[i] = new Array(9);
-			for (var j = 0; j < 9; j++) {       
-				this.cells[i][j] = {possibilities: new Set([1,2,3,4,5,6,7,8,9]), value: null};              
-			}
-		}
+        // create empty puzzle (2d array) with each cell having 1..9 possibilities, all cells are "undefined"
+        this.cells = new Array(9);
+        for (var i = 0; i < 9; i++) {
+            this.cells[i] = new Array(9);
+            for (var j = 0; j < 9; j++) {       
+                this.cells[i][j] = {possibilities: new Set([1,2,3,4,5,6,7,8,9]), value: null};              
+            }
+        }
 		
         var c;
         for (var i = 0; i < arg.length; i++) {
@@ -39,79 +39,79 @@ function Puzzle(arg) {
         }
     } 
 	
-	// input may be a puzzle in which case we clone that puzzle
-	if (typeof arg === 'object') {
-		this.timeStarted = arg.timeStarted;      // set all puzzles to start at the same time
-	    this.numDefinedCells = arg.numDefinedCells;
+    // input may be a puzzle in which case we clone that puzzle
+    if (typeof arg === 'object') {
+        this.timeStarted = arg.timeStarted;      // set all puzzles to start at the same time
+        this.numDefinedCells = arg.numDefinedCells;
 		
         this.cells = new Array(9);
-		for (var i = 0; i < 9; i++) {
-			this.cells[i] = new Array(9);
-			for (var j = 0; j < 9; j++) {       
-				this.cells[i][j] = {possibilities: new Set(arg.cells[i][j].possibilities), value: arg.cells[i][j].value};              
-			}
-		} 
-	}
+        for (var i = 0; i < 9; i++) {
+            this.cells[i] = new Array(9);
+            for (var j = 0; j < 9; j++) {       
+                this.cells[i][j] = {possibilities: new Set(arg.cells[i][j].possibilities), value: arg.cells[i][j].value};              
+            }
+        } 
+    }
 }
 
 Puzzle.prototype = {	
-	toString: function() {
-		var str = "";
+    toString: function() {
+        var str = "";
 		
-		for (var i = 0; i < 9; i++) {
-			for (var j = 0; j < 9; j++) {
-				if(this.cells[i][j].value === null) {
-					str += ".";
-				} else {
-					str += this.cells[i][j].value.toString();;
-				}
-			}
-		} 
-		return str;
-	},
+        for (var i = 0; i < 9; i++) {
+            for (var j = 0; j < 9; j++) {
+                if(this.cells[i][j].value === null) {
+                    str += ".";
+                } else {
+                    str += this.cells[i][j].value.toString();;
+                }
+            }
+        } 
+        return str;
+    },
         
     printRow: function(y) {
-		var str = "|";
-		for(var x=0; x < 3; x++) {
-			str += this.cells[x][y].value ? this.cells[x][y].value : " ";
-		}
-		str += "|";
+        var str = "|";
+        for(var x=0; x < 3; x++) {
+            str += this.cells[x][y].value ? this.cells[x][y].value : " ";
+        }
+        str += "|";
 	    
-		for(var x=3; x < 6; x++) {
-			str += this.cells[x][y].value ? this.cells[x][y].value : " ";
-		}
-		str += "|";
+        for(var x=3; x < 6; x++) {
+            str += this.cells[x][y].value ? this.cells[x][y].value : " ";
+        }
+        str += "|";
 		
-		for(var x=6; x < 9; x++) {
-			str += this.cells[x][y].value ? this.cells[x][y].value : " ";
-		}
-		str += "|";
-		console.log(str);
-	}, 
+        for(var x=6; x < 9; x++) {
+            str += this.cells[x][y].value ? this.cells[x][y].value : " ";
+        }
+        str += "|";
+        console.log(str);
+    }, 
 	
     print: function () {
-		console.log("-------------");
-		this.printRow(0);
-		this.printRow(1);
-		this.printRow(2);
-		console.log("-------------");
-		this.printRow(3);
-		this.printRow(4);
-		this.printRow(5);
-		console.log("-------------");
-		this.printRow(6);
-		this.printRow(7);
-		this.printRow(8);
-		console.log("-------------");
+        console.log("-------------");
+        this.printRow(0);
+        this.printRow(1);
+        this.printRow(2);
+        console.log("-------------");
+        this.printRow(3);
+        this.printRow(4);
+        this.printRow(5);
+        console.log("-------------");
+        this.printRow(6);
+        this.printRow(7);
+        this.printRow(8);
+        console.log("-------------");
     },
 
     solved: function() {		
         return this.numDefinedCells === 81;
     },
 	
-	getTimeToSolve: function() {
-		return this.timeToSolve;
-	},
+    getTimeToSolve: function() {
+        return this.timeToSolve;
+    },
 
     // return false if a cell's possibilities shrinks to the empty set. Means puzzle is not solvable
     // if neighbor's possibilities set size becomes 1 then add to the easyCells list
@@ -119,31 +119,31 @@ Puzzle.prototype = {
         if(this.cells[location.xCoord][location.yCoord].value === null) {
             var wasPresent = this.cells[location.xCoord][location.yCoord].possibilities.delete(digit);
 			
-			if(wasPresent) {					
-				if(this.cells[location.xCoord][location.yCoord].possibilities.size === 0) {
-					return false;
-				}	
+            if(wasPresent) {					
+                if(this.cells[location.xCoord][location.yCoord].possibilities.size === 0) {
+                    return false;
+                }	
 					
-				if(this.cells[location.xCoord][location.yCoord].possibilities.size === 1) {
-					this.easyCells.push(location);
-				}  
-			}
+                if(this.cells[location.xCoord][location.yCoord].possibilities.size === 1) {
+                    this.easyCells.push(location);
+                }  
+            }
         }
         
         return true;
     },
 	
     // fill in a cell and update the possibilities sets of each of its undefined neighbor cells
-	// cell1 and cell2 are neighbors is they are on the same row, column or smaller grid/square of 
-	// nine cells.
+    // cell1 and cell2 are neighbors is they are on the same row, column or smaller grid/square of 
+    // nine cells.
     // return false if the puzzle is found to be unsolvable, true otherwise
     fillInCell: function(location, digit) {
-		if(this.cells[location.xCoord][location.yCoord].value !== null) return true;  // nothing to do
+        if(this.cells[location.xCoord][location.yCoord].value !== null) return true;  // nothing to do
 		
         this.cells[location.xCoord][location.yCoord].value = digit;
         this.numDefinedCells++;
 
-		// update possibilities array of each undefined cell neighbor. 
+        // update possibilities array of each undefined cell neighbor. 
         for(var y=0; y<9; y++) {
             if(!this.updatePossibilities({xCoord: location.xCoord, yCoord: y}, digit)) return false;
         }
@@ -163,20 +163,20 @@ Puzzle.prototype = {
 
     // create a new puzzle by adding digit to a given cell then try to solve the result.
     solveNewPuzzle: function(location, digit) {
-		var newPuzzle = new Puzzle(this);
+        var newPuzzle = new Puzzle(this);
 		
         if(!newPuzzle.fillInCell(location, digit)) return null;   
         return newPuzzle.solve();
     },
 
     solve: function() {		
-	    var solvedPuzzle = null;
+        var solvedPuzzle = null;
 	
-		// might as well do the really easy work: processing the easy cells since they only have one possible value
-		var setIter;
+        // might as well do the really easy work: processing the easy cells since they only have one possible value
+        var setIter;
         var location = this.easyCells.pop();
         while (location != null) {			
-			setIter = this.cells[location.xCoord][location.yCoord].possibilities.values();
+            setIter = this.cells[location.xCoord][location.yCoord].possibilities.values();
 			
             if(!this.fillInCell(location, setIter.next().value)) {
                 return null;
@@ -185,96 +185,96 @@ Puzzle.prototype = {
         }
 
         if(this.solved()) {				
-			solvedPuzzle = this;
+            solvedPuzzle = this;
         } else {
             // if not solved yet then need to do some hard work now (recursion)
             // find cell with least number of possibilities
             // create a new puzzle for each of the cell's possibilities and try to solve it 
             // returning first non-null puzzle
-			var bestx, besty, location;
-			var possibilitiesLength  = 10;
-			for (var x = 0; x < 9; x++) {
+            var bestx, besty, location;
+            var possibilitiesLength  = 10;
+            for (var x = 0; x < 9; x++) {
                 for (var y = 0; y < 9; y++) {       
                     if(this.cells[x][y].possibilities.size < possibilitiesLength && this.cells[x][y].value === null) {
-						possibilitiesLength = this.cells[x][y].possibilities.size;
-						bestx = x;
-						besty = y;
-					}              
+                        possibilitiesLength = this.cells[x][y].possibilities.size;
+                        bestx = x;
+                        besty = y;
+                    }              
                 }
             }
 			
-			var self = this;
+            var self = this;
 			
-			this.cells[bestx][besty].possibilities.forEach(function(digit) {
-				if(!solvedPuzzle) {    // give other things a change to run
-					solvedPuzzle = self.solveNewPuzzle({xCoord: bestx, yCoord: besty}, digit);
-				}
-			});
+            this.cells[bestx][besty].possibilities.forEach(function(digit) {
+                if(!solvedPuzzle) {    // give other things a change to run
+                    solvedPuzzle = self.solveNewPuzzle({xCoord: bestx, yCoord: besty}, digit);
+                }
+            });
         }
 		
-		if(solvedPuzzle && !solvedPuzzle.timeToSolve) {
-			var d = new Date();
-			solvedPuzzle.timeToSolve = d.getTime() - solvedPuzzle.timeStarted;
-		}
+        if(solvedPuzzle && !solvedPuzzle.timeToSolve) {
+            var d = new Date();
+            solvedPuzzle.timeToSolve = d.getTime() - solvedPuzzle.timeStarted;
+        }
 		
-		return solvedPuzzle;
+        return solvedPuzzle;
     },
 	
-	// for testing. Checks validity of a complete puzzle
-	check: function() {
-		if(!this.solved()) return false;    // supposed to be complete 
+    // for testing. Checks validity of a complete puzzle
+    check: function() {
+        if(!this.solved()) return false;    // supposed to be complete 
 		
-		for (var i = 0; i < 9; i++) {
-			for (var j = 0; j < 9; j++) {       
-				if(this.cells[i][j].value == null) {
-					return false;  // supposed to be complete              
-				}
+        for (var i = 0; i < 9; i++) {
+            for (var j = 0; j < 9; j++) {       
+                if(this.cells[i][j].value == null) {
+                    return false;  // supposed to be complete              
+                }
 				
-				// check against its neighbors
-				for(var y=0; y<9; y++) {
-					if(this.cells[i][j].value == this.cells[i][y].value && j!==y) {
-						return false;
-					}	
-				}
+                // check against its neighbors
+                for(var y=0; y<9; y++) {
+                    if(this.cells[i][j].value == this.cells[i][y].value && j!==y) {
+                        return false;
+                    }	
+                }
 				
-				for(var x=0; x<9; x++) {
-					if(this.cells[i][j].value == this.cells[x][j].value && i!==x) {
-						return false;
-					}	
-				}
+                for(var x=0; x<9; x++) {
+                    if(this.cells[i][j].value == this.cells[x][j].value && i!==x) {
+                        return false;
+                    }	
+                }
 				
-				for(var x=i-i%3; x < i-i%3+3; x++) {
-					for(var y=j-j%3; y < j-j%3+3; y++) {
-						if(this.cells[i][j].value == this.cells[x][y].value && (i!==x || j!=y)) {
-							return false;
-						}	
-					}
-				}
-			}
-		}
-		return true;
-	}
+                for(var x=i-i%3; x < i-i%3+3; x++) {
+                    for(var y=j-j%3; y < j-j%3+3; y++) {
+                        if(this.cells[i][j].value == this.cells[x][y].value && (i!==x || j!=y)) {
+                            return false;
+                        }	
+                    }
+                }
+            }
+        }
+        return true;
+    }
 };
 
 function testSolver() {
-	var puzzle;
-	var solvedPuzzle;
-	for (var i=0; i< hardPuzzles.length; i++) {
-		puzzle = new Puzzle(puzzleStr);
-		var solvedPuzzle = puzzle.solve();
-		if(solvedPuzzle == null) {
-			console.log("Puzzle solution for puzzle " + i + " is not complete");
-			return false;				
-		}
+    var puzzle;
+    var solvedPuzzle;
+    for (var i=0; i< hardPuzzles.length; i++) {
+        puzzle = new Puzzle(puzzleStr);
+        var solvedPuzzle = puzzle.solve();
+        if(solvedPuzzle == null) {
+            console.log("Puzzle solution for puzzle " + i + " is not complete");
+            return false;				
+        }
 		
-		if(!solvedPuzzle.check()) {
-			console.log("Puzzle solution for puzzle " + i + " is not valid");
-			solvedPuzzle.print();
-			return false;
-		}	
-		console.log("Took " + solvedPuzzle.getTimeToSolve() + " to solve puzzle " + i);
-	}
-	return true;
+        if(!solvedPuzzle.check()) {
+            console.log("Puzzle solution for puzzle " + i + " is not valid");
+            solvedPuzzle.print();
+            return false;
+        }	
+        console.log("Took " + solvedPuzzle.getTimeToSolve() + " to solve puzzle " + i);
+    }
+    return true;
 };
 
 // yes a repeat of what is in sudoku-ui .. but better to have the test data "close" to the
