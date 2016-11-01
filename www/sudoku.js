@@ -206,7 +206,7 @@ Puzzle.prototype = {
             var self = this;
 			
             this.cells[bestx][besty].possibilities.forEach(function(digit) {
-                if(!solvedPuzzle) {    // give other things a change to run
+                if(!solvedPuzzle) {    
                     solvedPuzzle = self.solveNewPuzzle({xCoord: bestx, yCoord: besty}, digit);
                 }
             });
