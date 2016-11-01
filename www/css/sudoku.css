@@ -46,6 +46,18 @@
 .sudoku-wrapper .sudoku-container table tr td.editable>input[type=text].current{outline:none;background:#999}
 .sudoku-wrapper .sudoku-container table tr td.editable>input[type=text].filled-in{background:#ccc}
 
+.sudoku-wrapper .sudoku-container button {
+	background-color: #0088d1;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    margin: 0px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px
+}
+
 .spinner {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */

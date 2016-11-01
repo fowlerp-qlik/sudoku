@@ -65,7 +65,7 @@ Bugs and Deficiencies
 At time of writing the busy indicator (spinner) presented while the app is solving a program does not actually spin within the Intel App Preview.
 Does spin within Chrome on Windows 10.
 
-CSS Styling could be improved. In particular, the buttons are rather generic, bland and small. Will improve if I have time.
+CSS Styling in general could be improved. 
 
 Resolution handling on various devices and modes (landscape vs portrait) is incomplete/incorrect on the iphone 5.
 
