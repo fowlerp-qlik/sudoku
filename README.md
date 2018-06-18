@@ -1,7 +1,7 @@
 Sudoku Solver
 =============
 
-Sudoku Solver was developeed using the Intel(R) XDK (http://software.intel.com/en-us/html5). As such, it is a hybrid app written javascript, CSS and HTML5.
+Sudoku Solver was developeed using the Intel(R) XDK (http://software.intel.com/en-us/html5). As such, it is a hybrid app written in javascript, CSS and HTML5.
 Most testing and debugging was done with the Chrome browser on Windows 10. Final testing was done on an iPad using the Intel App Preview app.
 
 Indeed, you can download the www directory onto your PC or Mac and point your browser to it. eg. file:///C:/Users/Owner/Documents/Sudoku/www/index.html.
